@@ -1,0 +1,1 @@
+replaced all occurences of '#include <assimp/*>' with '#include <Assimp/include/*>'
