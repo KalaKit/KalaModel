@@ -8,7 +8,7 @@
 #include <vector>
 #include <filesystem>
 
-#include "KalaHeaders/import_kmf.hpp"
+#include "KalaHeaders/import_kmd.hpp"
 
 using KalaHeaders::ModelBlock;
 
@@ -17,12 +17,15 @@ namespace KalaModel
 	using std::vector;
 	using std::filesystem::path;
 	
+	using u8 = uint8_t;
+	
 	class Export
 	{
 	public:
 		//Export as kmf
 		static void ExportKMF(
 			const path& targetPath,
+			u8 scaleFactor,
 			vector<ModelBlock>& modelBlocks);
 	};
 }

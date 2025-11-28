@@ -22,28 +22,30 @@ static void AddExternalCommands()
 {
 	ostringstream msgParse{};
 	
-	msgParse << "Compiles models to kmf for runtime use with the help of Assimp.\n"
-		<< "    Second parameter must be origin model path (.gltf, .obj or .fbx)\n"
-		<< "    Third parameter must be target path (.kmf)";
+	msgParse << "Compiles models to kmd for runtime use with the help of Assimp.\n"
+		<< "    Second parameter must be downscale size\n"
+		<< "    Third parameter must be origin model path (.gltf, .obj or .fbx)\n"
+		<< "    Fourth parameter must be target path (.kmd)";
 	
 	ostringstream msgVerboseParse{};
 	
-	msgVerboseParse << "Compiles models to kmf for runtime use with the help of Assimp with additional verbose logging.\n"
-		<< "    Second parameter must be origin model path (.gltf, .obj or .fbx)\n"
-		<< "    Third parameter must be target path (.kmf)";
+	msgVerboseParse << "Compiles models to kmd for runtime use with the help of Assimp with additional verbose logging.\n"
+		<< "    Second parameter must be downscale size\n"
+		<< "    Third parameter must be origin model path (.gltf, .obj or .fbx)\n"
+		<< "    Fourth parameter must be target path (.kmd)";
 	
 	Command cmd_parse
 	{
 		.primary = { "parse", "p" },
 		.description = msgParse.str(),
-		.paramCount = 3,
+		.paramCount = 4,
 		.targetFunction = Parse::Command_Parse
 	};
 	Command cmd_verboseparse
 	{
 		.primary = { "vp" },
 		.description = msgVerboseParse.str(),
-		.paramCount = 3,
+		.paramCount = 4,
 		.targetFunction = Parse::Command_VerboseParse
 	};
 

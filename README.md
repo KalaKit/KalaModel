@@ -1,6 +1,6 @@
 # KalaModel
 
-Converts obj, gltf and fbx models to .kmf for runtime use.
+Converts obj, gltf and fbx models to .kmd for runtime use.
 
 This cli was built with the help of a [template cli](https://github.com/kalakit/kalacli).
 
