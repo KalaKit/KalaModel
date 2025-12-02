@@ -12,12 +12,12 @@
 
 #include "export.hpp"
 
-using KalaHeaders::Log;
-using KalaHeaders::LogType;
-using KalaHeaders::WriteU8;
-using KalaHeaders::WriteU16;
-using KalaHeaders::WriteU32;
-using KalaHeaders::WriteFixedString;
+using KalaHeaders::KalaLog::Log;
+using KalaHeaders::KalaLog::LogType;
+using KalaHeaders::KalaFile::WriteU8;
+using KalaHeaders::KalaFile::WriteU16;
+using KalaHeaders::KalaFile::WriteU32;
+using KalaHeaders::KalaFile::WriteFixedString;
 using KalaHeaders::KalaModelData::ModelHeader;
 using KalaHeaders::KalaModelData::Vertex;
 using KalaHeaders::KalaModelData::CORRECT_MODEL_HEADER_SIZE;

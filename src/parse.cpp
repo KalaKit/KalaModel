@@ -24,15 +24,15 @@
 
 using Assimp::Importer;
 
-using KalaHeaders::Log;
-using KalaHeaders::LogType;
-using KalaHeaders::vec2;
-using KalaHeaders::vec3;
-using KalaHeaders::vec4;
-using KalaHeaders::normalize;
-using KalaHeaders::dot;
-using KalaHeaders::length;
-using KalaHeaders::cross;
+using KalaHeaders::KalaLog::Log;
+using KalaHeaders::KalaLog::LogType;
+using KalaHeaders::KalaMath::vec2;
+using KalaHeaders::KalaMath::vec3;
+using KalaHeaders::KalaMath::vec4;
+using KalaHeaders::KalaMath::normalize;
+using KalaHeaders::KalaMath::dot;
+using KalaHeaders::KalaMath::length;
+using KalaHeaders::KalaMath::cross;
 using KalaHeaders::KalaModelData::ModelBlock;
 using KalaHeaders::KalaModelData::Vertex;
 
