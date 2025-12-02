@@ -10,7 +10,7 @@
 
 #include "KalaHeaders/import_kmd.hpp"
 
-using KalaHeaders::ModelBlock;
+using KalaHeaders::KalaModelData::ModelBlock;
 
 namespace KalaModel
 {

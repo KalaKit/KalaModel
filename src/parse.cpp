@@ -26,8 +26,6 @@ using Assimp::Importer;
 
 using KalaHeaders::Log;
 using KalaHeaders::LogType;
-using KalaHeaders::ModelBlock;
-using KalaHeaders::Vertex;
 using KalaHeaders::vec2;
 using KalaHeaders::vec3;
 using KalaHeaders::vec4;
@@ -35,6 +33,8 @@ using KalaHeaders::normalize;
 using KalaHeaders::dot;
 using KalaHeaders::length;
 using KalaHeaders::cross;
+using KalaHeaders::KalaModelData::ModelBlock;
+using KalaHeaders::KalaModelData::Vertex;
 
 using KalaCLI::Core;
 
