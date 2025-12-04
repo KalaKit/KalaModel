@@ -6,6 +6,7 @@
 #include <vector>
 #include <array>
 #include <string>
+#include <sstream>
 #include <filesystem>
 
 #include "Assimp/include/Importer.hpp"
@@ -33,6 +34,8 @@ using KalaHeaders::KalaMath::normalize;
 using KalaHeaders::KalaMath::dot;
 using KalaHeaders::KalaMath::length;
 using KalaHeaders::KalaMath::cross;
+using KalaHeaders::KalaString::StringToCharArray;
+using KalaHeaders::KalaString::ZeroPadCharArray;
 using KalaHeaders::KalaModelData::ModelBlock;
 using KalaHeaders::KalaModelData::Vertex;
 
@@ -45,6 +48,7 @@ using std::array;
 using std::string;
 using std::string_view;
 using std::to_string;
+using std::ostringstream;
 using std::filesystem::current_path;
 using std::filesystem::path;
 using std::filesystem::weakly_canonical;
@@ -275,6 +279,14 @@ void ParseAny(
 			
 			ModelBlock b{};
 			
+			StringToCharArray(n.nodeName, b.nodeName);
+			StringToCharArray(m.meshName, b.meshName);
+			StringToCharArray(n.nodePath, b.nodePath);
+			
+			ZeroPadCharArray(b.nodeName);
+			ZeroPadCharArray(b.meshName);
+			ZeroPadCharArray(b.nodePath);
+			
 			b.position[0] = position.x;
 			b.position[1] = position.y;
 			b.position[2] = position.z;
@@ -321,6 +333,7 @@ void ParseAny(
 				
 				b.vertices.push_back(v);
 			}
+			b.verticesSize = b.vertices.size() * sizeof(Vertex);
 			
 			//indices
 			b.indices.reserve(mesh->mNumFaces * 3);
@@ -332,6 +345,7 @@ void ParseAny(
 					b.indices.push_back(face.mIndices[j]);
 				}
 			}
+			b.indicesSize = b.indices.size() * sizeof(u32);
 			
 			models.push_back(move(b));
 		}
@@ -427,6 +441,38 @@ void ParseAny(
 	//
 	// FINALIZE AND EXIT
 	//
+	
+	if (isVerbose)
+	{
+		ostringstream oss{};
+		
+		for (const auto& m : models)
+		{
+			oss.str("");
+			oss.clear();
+			
+			oss << "Model info for '" << m.nodeName << "'\n"
+				<< "  mesh name:     " << m.meshName << "\n"
+				<< "  node path:     " << m.nodePath << "\n"
+				<< "  dataTypeFlags: " << m.dataTypeFlags << "\n"
+				<< "  renderType:    " << m.renderType << "\n\n"
+				
+				<< "  position: " << m.position[0] << ", " << m.position[1] << ", " << m.position[2] << "\n" 
+				<< "  rotation: " << m.rotation[0] << ", " << m.rotation[1] << ", " << m.rotation[2] << ", " << m.rotation[3] << "\n" 
+				<< "  size:     " << m.size[0] << ", " << m.size[1] << ", " << m.size[2] << "\n\n" 
+				
+				<< "  vertices offset: " << m.verticesOffset << "\n"
+				<< "  vertices size:   " << m.verticesSize << "\n"
+				<< "  indices offset:  " << m.indicesOffset << "\n"
+				<< "  indices size:    " << m.indicesSize << "\n"
+				<< "  vertices count:  " << m.vertices.size() << "\n"
+				<< "  indices count:   " << m.indices.size() << "\n\n"
+				
+				<< "--------------------\n\n";
+				
+			Log::Print(oss.str());
+		}
+	}
 	
 	Export::ExportKMF(
 		correctTarget,
